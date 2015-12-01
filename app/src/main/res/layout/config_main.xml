@@ -35,7 +35,12 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="133dp">
-
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/Difficulty"
+            android:checkedButton="@+id/difficulty">
             <RadioButton
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
@@ -45,9 +50,7 @@
                 android:textSize="22sp"
                 android:layout_marginLeft="51dp"
                 android:layout_marginStart="51dp"
-                android:layout_above="@+id/Normal"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                />
 
             <RadioButton
                 android:layout_width="wrap_content"
@@ -56,9 +59,7 @@
                 android:id="@+id/Normal"
                 android:checked="false"
                 android:textSize="22sp"
-                android:layout_centerVertical="true"
-                android:layout_alignLeft="@+id/Easy"
-                android:layout_alignStart="@+id/Easy" />
+                android:layout_marginLeft="51dp" />
 
             <RadioButton
                 android:layout_width="wrap_content"
@@ -67,9 +68,8 @@
                 android:id="@+id/Hard"
                 android:checked="false"
                 android:textSize="22sp"
-                android:layout_below="@+id/Normal"
-                android:layout_alignLeft="@+id/Normal"
-                android:layout_alignStart="@+id/Normal" />
+                android:layout_marginLeft="51dp" />
+        </RadioGroup>
         </RelativeLayout>
 
         <TextView
@@ -85,7 +85,12 @@
             android:layout_width="match_parent"
             android:layout_height="102dp"
             android:layout_weight="0.12">
-
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/Shot"
+            android:checkedButton="@+id/shot">
             <RadioButton
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
@@ -94,10 +99,7 @@
                 android:checked="true"
                 android:textSize="22sp"
                 android:layout_marginLeft="50dp"
-                android:layout_marginStart="50dp"
-                android:layout_above="@+id/AI"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:layout_marginStart="50dp" />
 
             <RadioButton
                 android:layout_width="140dp"
@@ -106,10 +108,8 @@
                 android:id="@+id/AI"
                 android:checked="false"
                 android:textSize="22sp"
-                android:layout_centerVertical="true"
-                android:layout_alignLeft="@+id/Player"
-                android:layout_alignStart="@+id/Player" />
-
+                android:layout_marginLeft="50dp" />
+        </RadioGroup>
         </RelativeLayout>
 
         <Button
@@ -117,6 +117,7 @@
             android:layout_height="wrap_content"
             android:text="@string/Play"
             android:id="@+id/Play"
+            android:onClick="startPvE"
             android:layout_gravity="center_horizontal"
             android:layout_weight="0.08"
             android:textSize="28sp" />
