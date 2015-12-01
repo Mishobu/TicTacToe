@@ -14,7 +14,7 @@ public class MainActivity extends Activity
     Button celdas[][];//declarando un arreglo de botones
     int tablero[][] = new int[3][3];//tablero que almacenara en que posiciones estan las x y las 0
     boolean botones_habilitados = false;//declarando botonees habilitados como falso
-    TextView Resultado = (TextView) findViewById(R.id.Resultado)// para generar texto del ganador
+    TextView Resultado = (TextView) findViewById(R.id.Resultado);// para generar texto del ganador
     int Ganador;// ganador es -1 cuando no ha ganado nadei, 0 yo gano y 1 gana la maquina
 
     public void init()
