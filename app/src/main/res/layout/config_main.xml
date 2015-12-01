@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:background="#99d9ea">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/PvsA"
+            android:id="@+id/textView2"
+            android:textColor="#000000"
+            android:textSize="30sp"
+            android:layout_gravity="center"
+            android:layout_weight="0.08"
+            android:gravity="bottom" />
+
+        <TextView
+            android:layout_width="208dp"
+            android:layout_height="wrap_content"
+            android:text="@string/select"
+            android:id="@+id/textView3"
+            android:textColor="#000000"
+            android:gravity="center_vertical|center_horizontal|bottom"
+            android:layout_weight="0.34"
+            android:textSize="25sp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="133dp">
+
+            <RadioButton
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:text="@string/Easy"
+                android:id="@+id/Easy"
+                android:checked="true"
+                android:textSize="22sp"
+                android:layout_marginLeft="51dp"
+                android:layout_marginStart="51dp"
+                android:layout_above="@+id/Normal"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Normal"
+                android:id="@+id/Normal"
+                android:checked="false"
+                android:textSize="22sp"
+                android:layout_centerVertical="true"
+                android:layout_alignLeft="@+id/Easy"
+                android:layout_alignStart="@+id/Easy" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Hard"
+                android:id="@+id/Hard"
+                android:checked="false"
+                android:textSize="22sp"
+                android:layout_below="@+id/Normal"
+                android:layout_alignLeft="@+id/Normal"
+                android:layout_alignStart="@+id/Normal" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="142dp"
+            android:layout_height="wrap_content"
+            android:text="@string/First"
+            android:id="@+id/textView5"
+            android:textColor="#000000"
+            android:gravity="center_vertical|center_horizontal|bottom"
+            android:textSize="25sp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="102dp"
+            android:layout_weight="0.12">
+
+            <RadioButton
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:text="@string/Player"
+                android:id="@+id/Player"
+                android:checked="true"
+                android:textSize="22sp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginStart="50dp"
+                android:layout_above="@+id/AI"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <RadioButton
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:text="@string/AI"
+                android:id="@+id/AI"
+                android:checked="false"
+                android:textSize="22sp"
+                android:layout_centerVertical="true"
+                android:layout_alignLeft="@+id/Player"
+                android:layout_alignStart="@+id/Player" />
+
+        </RelativeLayout>
+
+        <Button
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:text="@string/Play"
+            android:id="@+id/Play"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.08"
+            android:textSize="28sp" />
+
+    </LinearLayout>
+</LinearLayout>
