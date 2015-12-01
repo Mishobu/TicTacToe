@@ -277,7 +277,7 @@ public class MainActivity extends Activity
         return true;
     }
 
-    public void Vista_actualiza()//Actualiza la vista cada vez que la computadora tira
+    /*public void Vista_actualiza()//Actualiza la vista cada vez que la computadora tira
     {
         for(int i=0;i<3;i++)
             for(int j=0;j<3;j++)
@@ -290,7 +290,7 @@ public class MainActivity extends Activity
                     celdas[i][j].setForeground(Color.red);}
                 else celdas[i][j].setLabel("");
             }
-    }
+    }*/
 
     public boolean finPartida()//Meotodo que me  indica si acabo la partida
     {
