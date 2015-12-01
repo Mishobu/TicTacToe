@@ -283,12 +283,12 @@ public class MainActivity extends Activity
             for(int j=0;j<3;j++)
             {
                 if (tablero[i][j]==1) {
-                    celdas[i][j].setLabel("x");
+                    celdas[i][j].setText("X");
                     celdas[i][j].setForeground(Color.blue); }
                 else if (tablero[i][j]==0){
-                    celdas[i][j].setLabel("o");
+                    celdas[i][j].setText("O");
                     celdas[i][j].setForeground(Color.red);}
-                else celdas[i][j].setLabel("");
+                else celdas[i][j].setText("");
             }
     }
 
