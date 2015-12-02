@@ -1,7 +1,6 @@
 package com.mishobu.tictactoe;
 
 import android.app.Activity;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,11 +13,13 @@ public class MainActivity extends Activity
     Button celdas[][];//declarando un arreglo de botones
     int tablero[][] = new int[3][3];//tablero que almacenara en que posiciones estan las x y las 0
     boolean botones_habilitados = false;//declarando botonees habilitados como falso
-    TextView Resultado = (TextView) findViewById(R.id.Resultado);// para generar texto del ganador
+    String turn = "X";// turno
     int Ganador;// ganador es -1 cuando no ha ganado nadei, 0 yo gano y 1 gana la maquina
 
-    public void init()
-    {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
         boton_juego_nuevo = (Button) findViewById(R.id.Restart);
         celdas = new Button[3][3];//declarando un arreglo de botones de 3 filas por 3 columnas
         celdas[0][0] = (Button) findViewById(R.id.TL);
@@ -31,212 +32,211 @@ public class MainActivity extends Activity
         celdas[2][1] = (Button) findViewById(R.id.BC);
         celdas[2][2] = (Button) findViewById(R.id.BR);
 
-        /**CREANDO EL AREA DE TEXTO GANADOR*/
-        //pos = new Label("");
-        //pos.reshape(310,100,200,20);
-        //pos.setForeground(Color.white);
-    }
 
-    public void RestartGame(View v) {
         for (int i=0;i<3;i++)
             for(int j=0;j<3;j++)
             {
+                celdas[i][j].setClickable(true);
+                celdas[i][j].setOnClickListener(clickListener);
+                tablero[i][j]=-1;
+            }
+    }
+
+    public void RestartGame(View v) {
+        botones_habilitados=true;
+        turn = "X";
+        for (int i=0;i<3;i++)
+            for(int j=0;j<3;j++)
+            {
+                celdas[i][j].setClickable(true);
                 celdas[i][j].setText("");//borramos el contenido de las celdas
                 tablero[i][j]=-1;//inicializando todas las posiciones del tablero a menos uno
-                botones_habilitados=true;
             }
-        Ganador=-1;
+        Ganador = QuienGana();
+        Mostrar_mensaje();
     }
 
-    private void O_juega(){//describiendo los eventos de cada boton
-        /**REVISANDO SI LAS CELDAS DEL JUEGO SON PRESIONADAS*/
-        if((celdas[0][0].callOnClick()) && (celdas[0][0].getText().equals(""))  &&  (!finPartida()))//si el boton que se presiono fue una celda y esta vacio
-        {
-            celdas[0][0].setText("O");//escribe o sobre el boton
-            celdas[0][0].setBackgroundColor(Color.rgb(0, 206, 209));
-            tablero[0][0]=0;
-            X_juega();
-            Vista_actualiza();
-            Ganador=QuienGana();
-            Mostrar_mensaje();
+    View.OnClickListener clickListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            Button pressedButton = (Button) v;
+            switch (pressedButton.getId()){
+                case R.id.TL:
+                    if(turn == "X" && !finPartida()) {
+                        celdas[0][0].setText("X");//escribe o sobre el boton
+                        tablero[0][0] = 1;
+                        turn = "O";
+                        //Vista_actualiza();
+                        Ganador = QuienGana();
+                        Mostrar_mensaje();
+                        celdas[0][0].setClickable(false);
+                    }else if(turn == "O"){
+                        celdas[0][0].setText("O");//escribe o sobre el boton
+                        tablero[0][0] = 0;
+                        turn = "X";
+                        //Vista_actualiza();
+                        Ganador = QuienGana();
+                        Mostrar_mensaje();
+                        celdas[0][0].setClickable(false);
+                    }
+                    break;
+                case R.id.TC:
+                    if(turn == "X" && !finPartida()) {
+                        celdas[0][1].setText("X");//escribe o sobre el boton
+                        tablero[0][1] = 1;
+                        turn = "O";
+                        //Vista_actualiza();
+                        Ganador = QuienGana();
+                        Mostrar_mensaje();
+                        celdas[0][1].setClickable(false);
+                    }else if(turn == "O" && !finPartida()){
+                        celdas[0][1].setText("O");//escribe o sobre el boton
+                        tablero[0][1] = 0;
+                        turn = "X";
+                        //Vista_actualiza();
+                        Ganador = QuienGana();
+                        Mostrar_mensaje();
+                        celdas[0][1].setClickable(false);
+                    }
+                    break;
+                case R.id.TR:
+                    if(turn == "X" && !finPartida()) {
+                        celdas[0][2].setText("X");//escribe o sobre el boton
+                        tablero[0][2] = 1;
+                        turn = "O";
+                        //Vista_actualiza();
+                        Ganador = QuienGana();
+                        Mostrar_mensaje();
+                        celdas[0][2].setClickable(false);
+                    }else if(turn == "O" && !finPartida()){
+                        celdas[0][2].setText("O");//escribe o sobre el boton
+                        tablero[0][2] = 0;
+                        turn = "X";
+                        //Vista_actualiza();
+                        Ganador = QuienGana();
+                        Mostrar_mensaje();
+                        celdas[0][2].setClickable(false);
+                    }
+                    break;
+                case R.id.ML:
+                    if(turn == "X" && !finPartida()) {
+                        celdas[1][0].setText("X");//escribe o sobre el boton
+                        tablero[1][0] = 1;
+                        turn = "O";
+                        //Vista_actualiza();
+                        Ganador = QuienGana();
+                        Mostrar_mensaje();
+                        celdas[1][0].setClickable(false);
+                    }else if(turn == "O" && !finPartida()){
+                        celdas[1][0].setText("O");//escribe o sobre el boton
+                        tablero[1][0] = 0;
+                        turn = "X";
+                        //Vista_actualiza();
+                        Ganador = QuienGana();
+                        Mostrar_mensaje();
+                        celdas[1][0].setClickable(false);
+                    }
+                    break;
+                case R.id.MC:
+                    if(turn == "X" && !finPartida()) {
+                        celdas[1][1].setText("X");//escribe o sobre el boton
+                        tablero[1][1] = 1;
+                        turn = "O";
+                        //Vista_actualiza();
+                        Ganador = QuienGana();
+                        Mostrar_mensaje();
+                        celdas[1][1].setClickable(false);
+                    }else if(turn == "O" && !finPartida()){
+                        celdas[1][1].setText("O");//escribe o sobre el boton
+                        tablero[1][1] = 0;
+                        turn = "X";
+                        //Vista_actualiza();
+                        Ganador = QuienGana();
+                        Mostrar_mensaje();
+                        celdas[1][1].setClickable(false);
+                    }
+                    break;
+                case R.id.MR:
+                    if(turn == "X" && !finPartida()) {
+                        celdas[1][2].setText("X");//escribe o sobre el boton
+                        tablero[1][2] = 1;
+                        turn = "O";
+                        //Vista_actualiza();
+                        Ganador = QuienGana();
+                        Mostrar_mensaje();
+                        celdas[1][2].setClickable(false);
+                    }else if(turn == "O" && !finPartida()){
+                        celdas[1][2].setText("O");//escribe o sobre el boton
+                        tablero[1][2] = 0;
+                        turn = "X";
+                        //Vista_actualiza();
+                        Ganador = QuienGana();
+                        Mostrar_mensaje();
+                        celdas[1][2].setClickable(false);
+                    }
+                    break;
+                case R.id.BL:
+                    if(turn == "X" && !finPartida()) {
+                        celdas[2][0].setText("X");//escribe o sobre el boton
+                        tablero[2][0] = 1;
+                        turn = "O";
+                        //Vista_actualiza();
+                        Ganador = QuienGana();
+                        Mostrar_mensaje();
+                        celdas[2][0].setClickable(false);
+                    }else if(turn == "O" && !finPartida()){
+                        celdas[2][0].setText("O");//escribe o sobre el boton
+                        tablero[2][0] = 0;
+                        turn = "X";
+                        //Vista_actualiza();
+                        Ganador = QuienGana();
+                        Mostrar_mensaje();
+                        celdas[2][0].setClickable(false);
+                    }
+                    break;
+                case R.id.BC:
+                    if(turn == "X" && !finPartida()) {
+                        celdas[2][1].setText("X");//escribe o sobre el boton
+                        tablero[2][1] = 1;
+                        turn = "O";
+                        //Vista_actualiza();
+                        Ganador = QuienGana();
+                        Mostrar_mensaje();
+                        celdas[2][1].setClickable(false);
+                    }else if(turn == "O" && !finPartida()){
+                        celdas[2][1].setText("O");//escribe o sobre el boton
+                        tablero[2][1] = 0;
+                        turn = "X";
+                        //Vista_actualiza();
+                        Ganador = QuienGana();
+                        Mostrar_mensaje();
+                        celdas[2][1].setClickable(false);
+                    }
+                    break;
+                case R.id.BR:
+                    if(turn == "X" && !finPartida()) {
+                        celdas[2][2].setText("X");//escribe o sobre el boton
+                        tablero[2][2] = 1;
+                        turn = "O";
+                        //Vista_actualiza();
+                        Ganador = QuienGana();
+                        Mostrar_mensaje();
+                        celdas[2][2].setClickable(false);
+                    }else if(turn == "O" && !finPartida()){
+                        celdas[2][2].setText("O");//escribe o sobre el boton
+                        tablero[2][2] = 0;
+                        turn = "X";
+                        //Vista_actualiza();
+                        Ganador = QuienGana();
+                        Mostrar_mensaje();
+                        celdas[2][2].setClickable(false);
+                    }
+                    break;
+            }
+            /**REVISANDO SI LAS CELDAS DEL JUEGO SON PRESIONADAS*/
         }
-        else if((celdas[0][1].callOnClick()) && (celdas[0][0].getText().equals(""))  &&  (!finPartida()))//si el boton que se presiono fue una celda y esta vacio
-        {
-            celdas[0][1].setText("O");//escribe o sobre el boton
-            celdas[0][1].setBackgroundColor(Color.rgb(0, 206, 209));
-            tablero[0][1]=0;
-            X_juega();
-            Vista_actualiza();
-            Ganador=QuienGana();
-            Mostrar_mensaje();
-        }
-        else if((celdas[0][2].callOnClick()) && (celdas[0][0].getText().equals(""))  &&  (!finPartida()))//si el boton que se presiono fue una celda y esta vacio
-        {
-            celdas[0][2].setText("O");//escribe o sobre el boton
-            celdas[0][2].setBackgroundColor(Color.rgb(0, 206, 209));
-            tablero[0][2]=0;
-            X_juega();
-            Vista_actualiza();
-            Ganador=QuienGana();
-            Mostrar_mensaje();
-        }
-        else if((celdas[1][0].callOnClick()) && (celdas[0][0].getText().equals(""))  &&  (!finPartida()))//si el boton que se presiono fue una celda y esta vacio
-        {
-            celdas[1][0].setText("O");//escribe o sobre el boton
-            celdas[1][0].setBackgroundColor(Color.rgb(0, 206, 209));
-            tablero[1][0]=0;
-            X_juega();
-            Vista_actualiza();
-            Ganador=QuienGana();
-            Mostrar_mensaje();
-        }
-        else if((celdas[1][1].callOnClick()) && (celdas[0][0].getText().equals(""))  &&  (!finPartida()))//si el boton que se presiono fue una celda y esta vacio
-        {
-            celdas[1][1].setText("O");//escribe o sobre el boton
-            celdas[1][1].setBackgroundColor(Color.rgb(0, 206, 209));
-            tablero[1][1]=0;
-            X_juega();
-            Vista_actualiza();
-            Ganador=QuienGana();
-            Mostrar_mensaje();
-        }
-        else if((celdas[1][2].callOnClick()) && (celdas[0][0].getText().equals(""))  &&  (!finPartida()))//si el boton que se presiono fue una celda y esta vacio
-        {
-            celdas[1][2].setText("O");//escribe o sobre el boton
-            celdas[1][2].setBackgroundColor(Color.rgb(0, 206, 209));
-            tablero[1][2]=0;
-            X_juega();
-            Vista_actualiza();
-            Ganador=QuienGana();
-            Mostrar_mensaje();
-        }
-        else if((celdas[2][0].callOnClick()) && (celdas[0][0].getText().equals(""))  &&  (!finPartida()))//si el boton que se presiono fue una celda y esta vacio
-        {
-            celdas[2][0].setText("O");//escribe o sobre el boton
-            celdas[2][0].setBackgroundColor(Color.rgb(0, 206, 209));
-            tablero[2][0]=0;
-            X_juega();
-            Vista_actualiza();
-            Ganador=QuienGana();
-            Mostrar_mensaje();
-        }
-        else if((celdas[2][1].callOnClick()) && (celdas[0][0].getText().equals(""))  &&  (!finPartida()))//si el boton que se presiono fue una celda y esta vacio
-        {
-            celdas[2][1].setText("O");//escribe o sobre el boton
-            celdas[2][1].setBackgroundColor(Color.rgb(0, 206, 209));
-            tablero[2][1]=0;
-            X_juega();
-            Vista_actualiza();
-            Ganador=QuienGana();
-            Mostrar_mensaje();
-        }
-        else if((celdas[2][2].callOnClick()) && (celdas[0][0].getText().equals(""))  &&  (!finPartida()))//si el boton que se presiono fue una celda y esta vacio
-        {
-            celdas[2][2].setText("O");//escribe o sobre el boton
-            celdas[2][2].setBackgroundColor(Color.rgb(0, 206, 209));
-            tablero[2][2]=0;
-            X_juega();
-            Vista_actualiza();
-            Ganador=QuienGana();
-            Mostrar_mensaje();
-        }
-    }
+    };
 
-    private void X_juega() {
-        /**REVISANDO SI LAS CELDAS DEL JUEGO SON PRESIONADAS*/
-        if((celdas[0][0].callOnClick()) && (celdas[0][0].getText().equals(""))  &&  (!finPartida()))//si el boton que se presiono fue una celda y esta vacio
-        {
-            celdas[0][0].setText("X");//escribe o sobre el boton
-            celdas[0][0].setBackgroundColor(Color.rgb(0, 206, 209));
-            tablero[0][0]=1;
-            X_juega();
-            Vista_actualiza();
-            Ganador=QuienGana();
-            Mostrar_mensaje();
-        }
-        else if((celdas[0][1].callOnClick()) && (celdas[0][0].getText().equals(""))  &&  (!finPartida()))//si el boton que se presiono fue una celda y esta vacio
-        {
-            celdas[0][1].setText("X");//escribe o sobre el boton
-            celdas[0][1].setBackgroundColor(Color.rgb(0, 206, 209));
-            tablero[0][1]=1;
-            X_juega();
-            Vista_actualiza();
-            Ganador=QuienGana();
-            Mostrar_mensaje();
-        }
-        else if((celdas[0][2].callOnClick()) && (celdas[0][0].getText().equals(""))  &&  (!finPartida()))//si el boton que se presiono fue una celda y esta vacio
-        {
-            celdas[0][2].setText("X");//escribe o sobre el boton
-            celdas[0][2].setBackgroundColor(Color.rgb(0, 206, 209));
-            tablero[0][2]=1;
-            X_juega();
-            Vista_actualiza();
-            Ganador=QuienGana();
-            Mostrar_mensaje();
-        }
-        else if((celdas[1][0].callOnClick()) && (celdas[0][0].getText().equals(""))  &&  (!finPartida()))//si el boton que se presiono fue una celda y esta vacio
-        {
-            celdas[1][0].setText("X");//escribe o sobre el boton
-            celdas[1][0].setBackgroundColor(Color.rgb(0, 206, 209));
-            tablero[1][0]=1;
-            X_juega();
-            Vista_actualiza();
-            Ganador=QuienGana();
-            Mostrar_mensaje();
-        }
-        else if((celdas[1][1].callOnClick()) && (celdas[0][0].getText().equals(""))  &&  (!finPartida()))//si el boton que se presiono fue una celda y esta vacio
-        {
-            celdas[1][1].setText("X");//escribe o sobre el boton
-            celdas[1][1].setBackgroundColor(Color.rgb(0, 206, 209));
-            tablero[1][1]=1;
-            X_juega();
-            Vista_actualiza();
-            Ganador=QuienGana();
-            Mostrar_mensaje();
-        }
-        else if((celdas[1][2].callOnClick()) && (celdas[0][0].getText().equals(""))  &&  (!finPartida()))//si el boton que se presiono fue una celda y esta vacio
-        {
-            celdas[1][2].setText("X");//escribe o sobre el boton
-            celdas[1][2].setBackgroundColor(Color.rgb(0, 206, 209));
-            tablero[1][2]=1;
-            X_juega();
-            Vista_actualiza();
-            Ganador=QuienGana();
-            Mostrar_mensaje();
-        }
-        else if((celdas[2][0].callOnClick()) && (celdas[0][0].getText().equals(""))  &&  (!finPartida()))//si el boton que se presiono fue una celda y esta vacio
-        {
-            celdas[2][0].setText("X");//escribe o sobre el boton
-            celdas[2][0].setBackgroundColor(Color.rgb(0, 206, 209));
-            tablero[2][0]=1;
-            X_juega();
-            Vista_actualiza();
-            Ganador=QuienGana();
-            Mostrar_mensaje();
-        }
-        else if((celdas[2][1].callOnClick()) && (celdas[0][0].getText().equals(""))  &&  (!finPartida()))//si el boton que se presiono fue una celda y esta vacio
-        {
-            celdas[2][1].setText("X");//escribe o sobre el boton
-            celdas[2][1].setBackgroundColor(Color.rgb(0, 206, 209));
-            tablero[2][1]=1;
-            X_juega();
-            Vista_actualiza();
-            Ganador=QuienGana();
-            Mostrar_mensaje();
-        }
-        else if((celdas[2][2].callOnClick()) && (celdas[0][0].getText().equals(""))  &&  (!finPartida()))//si el boton que se presiono fue una celda y esta vacio
-        {
-            celdas[2][2].setText("X");//escribe o sobre el boton
-            celdas[2][2].setBackgroundColor(Color.rgb(0, 206, 209));
-            tablero[2][2]=1;
-            X_juega();
-            Vista_actualiza();
-            Ganador=QuienGana();
-            Mostrar_mensaje();
-        }
-    }
-
-    public int QuienGana()//METODO QUE REGRESA -1 SI GANA LA PERSONA 1 SI GANA EL ORDENADOR
+    public int QuienGana()//METODO QUE REGRESA -1 SI GANA LA O 0 Y SI GANA LA X 1
     {
         if (tablero[0][0]!=-1 && tablero[0][0]==tablero[1][1] && tablero[0][0]==tablero[2][2])//viendo quien gana en las diagonales
             return tablero[0][0];
@@ -253,22 +253,20 @@ public class MainActivity extends Activity
         return -1;//indicando que nadie ha ganado
     }
 
-    public int getGanador()//REGRESA EL VALOR DE LA VARIABLE Ganador
-    {
-        return Ganador;
-    }
-
     public void Mostrar_mensaje()//metodo que muetra el mensaje de ganador perdedor o empate
     {
+        TextView Resultado = (TextView) findViewById(R.id.Resultado);
         if (Ganador==0)
             Resultado.setText("Jugador O ha Ganado");
         else if (Ganador==1)
             Resultado.setText("Jugador X ha Ganado");
         else if (Ganador==-1 && finPartida())
             Resultado.setText("Empate");
+        else if (Ganador==-1)
+            Resultado.setText(" ");
     }
 
-    public boolean Tablero_lleno()//METODO QUE REVISA SI TODO EL TABLERO ESTA LLENO
+    public boolean Tablero_lleno()//METODO QUE REVISA SITODO EL TABLERO ESTA LLENO
     {
         for(int i=0;i<3;i++)
             for(int j=0;j<3;j++)
@@ -277,31 +275,8 @@ public class MainActivity extends Activity
         return true;
     }
 
-    public void Vista_actualiza()//Actualiza la vista cada vez que la computadora tira
-    {
-        for(int i=0;i<3;i++)
-            for(int j=0;j<3;j++)
-            {
-                if (tablero[i][j]==1) {
-                    celdas[i][j].setText("X");
-                    celdas[i][j].setForeground(Color.blue); }
-                else if (tablero[i][j]==0){
-                    celdas[i][j].setText("O");
-                    celdas[i][j].setForeground(Color.red);}
-                else celdas[i][j].setText("");
-            }
-    }
-
     public boolean finPartida()//Meotodo que me  indica si acabo la partida
     {
         return Tablero_lleno() || QuienGana()!=-1;//cuando el tablero esta lleno o alguien ha ganado la partida
     }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-    }
-
-
 }

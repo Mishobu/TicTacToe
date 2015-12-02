@@ -1,6 +1,7 @@
 package com.mishobu.tictactoe;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RadioButton;
@@ -66,23 +67,25 @@ public class MainConfig extends Activity {
             int checkedSh = Shot.getCheckedRadioButtonId();
             // find which radioButton is checked by id
             if(checkedId == Easy.getId() && checkedSh == Player.getId()) {
-                Toast.makeText(getApplicationContext(), "choice: Easy+Player",
-                        Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainConfig.this, Easy.class);
+                startActivity(intent);
             } else if(checkedId == Normal.getId() && checkedSh == Player.getId()) {
-                Toast.makeText(getApplicationContext(), "choice: Normal+Player",
-                        Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainConfig.this, Normal.class);
+                startActivity(intent);
             } else if(checkedId == Hard.getId() && checkedSh == Player.getId()){
-                Toast.makeText(getApplicationContext(), "choice: Hard+Player",
-                        Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainConfig.this, Hard.class);
+                startActivity(intent);
             } else if(checkedId == Easy.getId() && checkedSh == AI.getId()) {
-                Toast.makeText(getApplicationContext(), "choice: Easy+AI",
-                        Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainConfig.this, EasyAI.class);
+                startActivity(intent);
             } else if(checkedId == Normal.getId() && checkedSh == AI.getId()){
-                Toast.makeText(getApplicationContext(), "choice: Normal+AI",
-                        Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainConfig.this, NormalAI.class);
+                startActivity(intent);
             } else if(checkedId == Hard.getId() && checkedSh == AI.getId()) {
-                Toast.makeText(getApplicationContext(), "choice: Hard+AI",
-                        Toast.LENGTH_SHORT).show();
+                /*Toast.makeText(getApplicationContext(), "choice: Hard+AI",
+                        Toast.LENGTH_SHORT).show();*/
+                Intent intent = new Intent(MainConfig.this, HardAI.class);
+                startActivity(intent);
         }
   }
 }
