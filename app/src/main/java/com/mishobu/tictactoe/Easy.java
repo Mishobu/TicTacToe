@@ -171,9 +171,9 @@ public class Easy extends Activity {
     {
         TextView Resultado = (TextView) findViewById(R.id.Resultado);
         if (Winner==0)
-            Resultado.setText("O Wins");
+            Resultado.setText("AI Wins");
         else if (Winner==1)
-            Resultado.setText("X Wins");
+            Resultado.setText("Player Wins");
         else if (Winner==-1 && GameOver())
             Resultado.setText("Draw");
         else if (Winner==-1)

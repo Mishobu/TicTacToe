@@ -65,7 +65,6 @@ public class MainActivity extends Activity
                         GameSpace[0][0].setText("X");//escribe o sobre el boton
                         Board[0][0] = 1;
                         turn = "O";
-                        //Vista_actualiza();
                         Winner = WhoWins();
                         ShowResult();
                         GameSpace[0][0].setClickable(false);
@@ -73,7 +72,6 @@ public class MainActivity extends Activity
                         GameSpace[0][0].setText("O");//escribe o sobre el boton
                         Board[0][0] = 0;
                         turn = "X";
-                        //Vista_actualiza();
                         Winner = WhoWins();
                         ShowResult();
                         GameSpace[0][0].setClickable(false);
@@ -84,7 +82,6 @@ public class MainActivity extends Activity
                         GameSpace[0][1].setText("X");//escribe o sobre el boton
                         Board[0][1] = 1;
                         turn = "O";
-                        //Vista_actualiza();
                         Winner = WhoWins();
                         ShowResult();
                         GameSpace[0][1].setClickable(false);
@@ -92,7 +89,6 @@ public class MainActivity extends Activity
                         GameSpace[0][1].setText("O");//escribe o sobre el boton
                         Board[0][1] = 0;
                         turn = "X";
-                        //Vista_actualiza();
                         Winner = WhoWins();
                         ShowResult();
                         GameSpace[0][1].setClickable(false);
@@ -103,7 +99,6 @@ public class MainActivity extends Activity
                         GameSpace[0][2].setText("X");//escribe o sobre el boton
                         Board[0][2] = 1;
                         turn = "O";
-                        //Vista_actualiza();
                         Winner = WhoWins();
                         ShowResult();
                         GameSpace[0][2].setClickable(false);
@@ -111,7 +106,6 @@ public class MainActivity extends Activity
                         GameSpace[0][2].setText("O");//escribe o sobre el boton
                         Board[0][2] = 0;
                         turn = "X";
-                        //Vista_actualiza();
                         Winner = WhoWins();
                         ShowResult();
                         GameSpace[0][2].setClickable(false);
@@ -122,7 +116,6 @@ public class MainActivity extends Activity
                         GameSpace[1][0].setText("X");//escribe o sobre el boton
                         Board[1][0] = 1;
                         turn = "O";
-                        //Vista_actualiza();
                         Winner = WhoWins();
                         ShowResult();
                         GameSpace[1][0].setClickable(false);
@@ -130,7 +123,6 @@ public class MainActivity extends Activity
                         GameSpace[1][0].setText("O");//escribe o sobre el boton
                         Board[1][0] = 0;
                         turn = "X";
-                        //Vista_actualiza();
                         Winner = WhoWins();
                         ShowResult();
                         GameSpace[1][0].setClickable(false);
@@ -141,7 +133,6 @@ public class MainActivity extends Activity
                         GameSpace[1][1].setText("X");//escribe o sobre el boton
                         Board[1][1] = 1;
                         turn = "O";
-                        //Vista_actualiza();
                         Winner = WhoWins();
                         ShowResult();
                         GameSpace[1][1].setClickable(false);
@@ -149,7 +140,6 @@ public class MainActivity extends Activity
                         GameSpace[1][1].setText("O");//escribe o sobre el boton
                         Board[1][1] = 0;
                         turn = "X";
-                        //Vista_actualiza();
                         Winner = WhoWins();
                         ShowResult();
                         GameSpace[1][1].setClickable(false);
@@ -160,7 +150,6 @@ public class MainActivity extends Activity
                         GameSpace[1][2].setText("X");//escribe o sobre el boton
                         Board[1][2] = 1;
                         turn = "O";
-                        //Vista_actualiza();
                         Winner = WhoWins();
                         ShowResult();
                         GameSpace[1][2].setClickable(false);
@@ -168,7 +157,6 @@ public class MainActivity extends Activity
                         GameSpace[1][2].setText("O");//escribe o sobre el boton
                         Board[1][2] = 0;
                         turn = "X";
-                        //Vista_actualiza();
                         Winner = WhoWins();
                         ShowResult();
                         GameSpace[1][2].setClickable(false);
@@ -179,7 +167,6 @@ public class MainActivity extends Activity
                         GameSpace[2][0].setText("X");//escribe o sobre el boton
                         Board[2][0] = 1;
                         turn = "O";
-                        //Vista_actualiza();
                         Winner = WhoWins();
                         ShowResult();
                         GameSpace[2][0].setClickable(false);
@@ -187,7 +174,6 @@ public class MainActivity extends Activity
                         GameSpace[2][0].setText("O");//escribe o sobre el boton
                         Board[2][0] = 0;
                         turn = "X";
-                        //Vista_actualiza();
                         Winner = WhoWins();
                         ShowResult();
                         GameSpace[2][0].setClickable(false);
@@ -198,7 +184,6 @@ public class MainActivity extends Activity
                         GameSpace[2][1].setText("X");//escribe o sobre el boton
                         Board[2][1] = 1;
                         turn = "O";
-                        //Vista_actualiza();
                         Winner = WhoWins();
                         ShowResult();
                         GameSpace[2][1].setClickable(false);
@@ -206,7 +191,6 @@ public class MainActivity extends Activity
                         GameSpace[2][1].setText("O");//escribe o sobre el boton
                         Board[2][1] = 0;
                         turn = "X";
-                        //Vista_actualiza();
                         Winner = WhoWins();
                         ShowResult();
                         GameSpace[2][1].setClickable(false);
@@ -217,7 +201,6 @@ public class MainActivity extends Activity
                         GameSpace[2][2].setText("X");//escribe o sobre el boton
                         Board[2][2] = 1;
                         turn = "O";
-                        //Vista_actualiza();
                         Winner = WhoWins();
                         ShowResult();
                         GameSpace[2][2].setClickable(false);
@@ -225,7 +208,6 @@ public class MainActivity extends Activity
                         GameSpace[2][2].setText("O");//escribe o sobre el boton
                         Board[2][2] = 0;
                         turn = "X";
-                        //Vista_actualiza();
                         Winner = WhoWins();
                         ShowResult();
                         GameSpace[2][2].setClickable(false);
@@ -257,11 +239,11 @@ public class MainActivity extends Activity
     {
         TextView Resultado = (TextView) findViewById(R.id.Resultado);
         if (Winner==0)
-            Resultado.setText("Jugador O ha Ganado");
+            Resultado.setText("Player O Wins");
         else if (Winner==1)
-            Resultado.setText("Jugador X ha Ganado");
+            Resultado.setText("Player X Wins");
         else if (Winner==-1 && GameOver())
-            Resultado.setText("Empate");
+            Resultado.setText("Draw");
         else if (Winner==-1)
             Resultado.setText(" ");
     }

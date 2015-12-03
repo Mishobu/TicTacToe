@@ -31,7 +31,6 @@ public class NormalAI extends Activity {
         GameSpace[2][1] = (Button) findViewById(R.id.BC);
         GameSpace[2][2] = (Button) findViewById(R.id.BR);
 
-
         for (int i=0;i<3;i++)
             for(int j=0;j<3;j++)
             {
@@ -39,6 +38,7 @@ public class NormalAI extends Activity {
                 GameSpace[i][j].setOnClickListener(clickListener);
                 Board[i][j]=-1;
             }
+        AIPlays();
     }
 
     public void RestartGame(View v) {
@@ -51,6 +51,7 @@ public class NormalAI extends Activity {
                 GameSpace[i][j].setText("");//borramos el contenido de las GameSpace
                 Board[i][j]=-1;//inicializando todas las posiciones del Board a menos uno
             }
+        AIPlays();
         Winner = WhoWins();
         ShowResult();
     }
@@ -60,174 +61,84 @@ public class NormalAI extends Activity {
             Button pressedButton = (Button) v;
             switch (pressedButton.getId()){
                 case R.id.TL:
-                    if(turn == "X" && !GameOver()) {
-                        GameSpace[0][0].setText("X");//escribe o sobre el boton
-                        Board[0][0] = 1;
-                        turn = "O";
-                        //Vista_actualiza();
-                        Winner = WhoWins();
-                        ShowResult();
-                        GameSpace[0][0].setClickable(false);
-                    }else if(turn == "O"){
+                    if(!GameOver()) {
                         GameSpace[0][0].setText("O");//escribe o sobre el boton
                         Board[0][0] = 0;
-                        turn = "X";
-                        //Vista_actualiza();
+                        AIPlays();
                         Winner = WhoWins();
                         ShowResult();
-                        GameSpace[0][0].setClickable(false);
                     }
                     break;
                 case R.id.TC:
-                    if(turn == "X" && !GameOver()) {
-                        GameSpace[0][1].setText("X");//escribe o sobre el boton
-                        Board[0][1] = 1;
-                        turn = "O";
-                        //Vista_actualiza();
-                        Winner = WhoWins();
-                        ShowResult();
-                        GameSpace[0][1].setClickable(false);
-                    }else if(turn == "O" && !GameOver()){
+                    if(!GameOver()) {
                         GameSpace[0][1].setText("O");//escribe o sobre el boton
                         Board[0][1] = 0;
-                        turn = "X";
-                        //Vista_actualiza();
+                        AIPlays();
                         Winner = WhoWins();
                         ShowResult();
-                        GameSpace[0][1].setClickable(false);
                     }
                     break;
                 case R.id.TR:
-                    if(turn == "X" && !GameOver()) {
-                        GameSpace[0][2].setText("X");//escribe o sobre el boton
-                        Board[0][2] = 1;
-                        turn = "O";
-                        //Vista_actualiza();
-                        Winner = WhoWins();
-                        ShowResult();
-                        GameSpace[0][2].setClickable(false);
-                    }else if(turn == "O" && !GameOver()){
+                    if(!GameOver()) {
                         GameSpace[0][2].setText("O");//escribe o sobre el boton
                         Board[0][2] = 0;
-                        turn = "X";
-                        //Vista_actualiza();
+                        AIPlays();
                         Winner = WhoWins();
                         ShowResult();
-                        GameSpace[0][2].setClickable(false);
                     }
                     break;
                 case R.id.ML:
-                    if(turn == "X" && !GameOver()) {
-                        GameSpace[1][0].setText("X");//escribe o sobre el boton
-                        Board[1][0] = 1;
-                        turn = "O";
-                        //Vista_actualiza();
-                        Winner = WhoWins();
-                        ShowResult();
-                        GameSpace[1][0].setClickable(false);
-                    }else if(turn == "O" && !GameOver()){
+                    if(!GameOver()) {
                         GameSpace[1][0].setText("O");//escribe o sobre el boton
                         Board[1][0] = 0;
-                        turn = "X";
-                        //Vista_actualiza();
+                        AIPlays();
                         Winner = WhoWins();
                         ShowResult();
-                        GameSpace[1][0].setClickable(false);
                     }
                     break;
                 case R.id.MC:
-                    if(turn == "X" && !GameOver()) {
-                        GameSpace[1][1].setText("X");//escribe o sobre el boton
-                        Board[1][1] = 1;
-                        turn = "O";
-                        //Vista_actualiza();
-                        Winner = WhoWins();
-                        ShowResult();
-                        GameSpace[1][1].setClickable(false);
-                    }else if(turn == "O" && !GameOver()){
+                    if(!GameOver()) {
                         GameSpace[1][1].setText("O");//escribe o sobre el boton
                         Board[1][1] = 0;
-                        turn = "X";
-                        //Vista_actualiza();
+                        AIPlays();
                         Winner = WhoWins();
                         ShowResult();
-                        GameSpace[1][1].setClickable(false);
                     }
                     break;
                 case R.id.MR:
-                    if(turn == "X" && !GameOver()) {
-                        GameSpace[1][2].setText("X");//escribe o sobre el boton
-                        Board[1][2] = 1;
-                        turn = "O";
-                        //Vista_actualiza();
-                        Winner = WhoWins();
-                        ShowResult();
-                        GameSpace[1][2].setClickable(false);
-                    }else if(turn == "O" && !GameOver()){
+                    if(!GameOver()) {
                         GameSpace[1][2].setText("O");//escribe o sobre el boton
                         Board[1][2] = 0;
-                        turn = "X";
-                        //Vista_actualiza();
+                        AIPlays();
                         Winner = WhoWins();
                         ShowResult();
-                        GameSpace[1][2].setClickable(false);
                     }
                     break;
                 case R.id.BL:
-                    if(turn == "X" && !GameOver()) {
-                        GameSpace[2][0].setText("X");//escribe o sobre el boton
-                        Board[2][0] = 1;
-                        turn = "O";
-                        //Vista_actualiza();
-                        Winner = WhoWins();
-                        ShowResult();
-                        GameSpace[2][0].setClickable(false);
-                    }else if(turn == "O" && !GameOver()){
+                    if(!GameOver()) {
                         GameSpace[2][0].setText("O");//escribe o sobre el boton
                         Board[2][0] = 0;
-                        turn = "X";
-                        //Vista_actualiza();
+                        AIPlays();
                         Winner = WhoWins();
                         ShowResult();
-                        GameSpace[2][0].setClickable(false);
                     }
                     break;
                 case R.id.BC:
-                    if(turn == "X" && !GameOver()) {
-                        GameSpace[2][1].setText("X");//escribe o sobre el boton
-                        Board[2][1] = 1;
-                        turn = "O";
-                        //Vista_actualiza();
-                        Winner = WhoWins();
-                        ShowResult();
-                        GameSpace[2][1].setClickable(false);
-                    }else if(turn == "O" && !GameOver()){
+                    if(!GameOver()) {
                         GameSpace[2][1].setText("O");//escribe o sobre el boton
                         Board[2][1] = 0;
-                        turn = "X";
-                        //Vista_actualiza();
+                        AIPlays();
                         Winner = WhoWins();
                         ShowResult();
-                        GameSpace[2][1].setClickable(false);
                     }
                     break;
                 case R.id.BR:
-                    if(turn == "X" && !GameOver()) {
-                        GameSpace[2][2].setText("X");//escribe o sobre el boton
-                        Board[2][2] = 1;
-                        turn = "O";
-                        //Vista_actualiza();
-                        Winner = WhoWins();
-                        ShowResult();
-                        GameSpace[2][2].setClickable(false);
-                    }else if(turn == "O" && !GameOver()){
+                    if(!GameOver()) {
                         GameSpace[2][2].setText("O");//escribe o sobre el boton
                         Board[2][2] = 0;
-                        turn = "X";
-                        //Vista_actualiza();
+                        AIPlays();
                         Winner = WhoWins();
                         ShowResult();
-                        GameSpace[2][2].setClickable(false);
                     }
                     break;
             }
@@ -261,11 +172,11 @@ public class NormalAI extends Activity {
     {
         TextView Resultado = (TextView) findViewById(R.id.Resultado);
         if (Winner==0)
-            Resultado.setText("Jugador O ha Ganado");
+            Resultado.setText("Player Wins");
         else if (Winner==1)
-            Resultado.setText("Jugador X ha Ganado");
+            Resultado.setText("AI Wins");
         else if (Winner==-1 && GameOver())
-            Resultado.setText("Empate");
+            Resultado.setText("Draw");
         else if (Winner==-1)
             Resultado.setText(" ");
     }
@@ -279,7 +190,7 @@ public class NormalAI extends Activity {
         return true;
     }
 
-    public void Vista_actualiza()//Actualiza la vista cada vez que la computadora tira
+    public void UpdateBoard()//Actualiza la vista cada vez que la computadora tira
     {
         for(int i=0;i<3;i++)
             for(int j=0;j<3;j++)
@@ -295,5 +206,106 @@ public class NormalAI extends Activity {
     public boolean GameOver()//Meotodo que me  indica si acabo la partida
     {
         return FullBoard() || WhoWins()!=-1;//cuando el Board esta lleno o alguien ha ganado la partida
+    }
+
+    public void AIPlays()//tiene que buscar la mejor conbinacion (EL MAXIMO)
+    {
+        if(!GameOver())//mientras no acabe la partida aplicas el algoritmo
+        {
+            int f=0,c=0;
+            int v=Integer.MIN_VALUE;
+            int aux;
+
+            for(int i=0;i<3;i++)
+                for(int j=0;j<3;j++)
+                    if(Board[i][j]==-1)//si el Board esta vacio
+                    {
+                        Board[i][j]=1;//tiramos
+                        aux=min();//buscamos minimizar
+                        if(aux>v)//en caso de tener un mejor valor
+                        {
+                            v=aux;//actualizamos el valor de v por si encuentra un mejor nodo
+                            f=i;//guardamos las posiciones
+                            c=j;//guardamos las posiciones
+                        }
+                        Board[i][j]=-1;//restableces el tiro
+                    }
+            Board[f][c]=1;  //la mejor posicion es la que tira (inidces f,c (son los que guarda i y j))
+            GameSpace[f][c].setClickable(false);
+        }
+        UpdateBoard();
+    }
+
+
+    /**IMPLEMENTANDO EL ALGORITMO MINMAX*/
+
+    /**ALGOTIRMO MIN MAX:
+
+     Play_O(board)
+     If end_game(board) then return eval(boar d)
+     For each empty slot in board
+     New_board = board
+     Mark empty cell with O in new_board
+     value = Play_X(new_board)
+     If value < min  then value = min
+     Return value
+     End
+
+
+     If end_game(board) then return eval(board)
+     For each empty slot in board
+     New_board = board
+     Mark empty cell with X in new_board
+     value = Play_O(new_board)
+     If value > max  then value = max
+     Return value
+     end
+
+     */
+
+
+    public int max()
+    {
+        if(GameOver())//en caso de haber acabado
+            if(WhoWins()!=-1) return -1;//gana maquina
+            else return 0;//gana usuario
+
+        int v=Integer.MIN_VALUE;
+        int aux;
+
+        for(int i=0; i<3; i++)
+            for (int j=0;j<3;j++)
+                if(Board[i][j]==-1)//si esta vacio
+                {
+                    Board[i][j]=1;//tiramos
+                    aux=min();//buscamos minimizar
+                    if(aux>v)
+                        v=aux;//en caso de que auxiliar sea menos al MIN value lo guardamos
+                    Board[i][j]=-1;//marcamos como vacia la casilla
+                }
+        return v;//regresamos el valor maximo del nodo
+    }
+
+    public int min()
+    {
+        // -1 indica que nadie a ganado
+        if(GameOver())//en caso de haber acabado
+            if(WhoWins()!=-1) return 1;//gana maquina
+            else return 0;//gana usuario
+
+
+        int v=Integer.MAX_VALUE;
+        int aux;
+        for (int i=0;i<3;i++)
+            for (int j=0;j<3;j++)
+                if(Board[i][j]==-1)//si esta vacio
+                {
+                    Board[i][j]=0;//tiramos
+                    aux=max();//buscamos maximizar
+                    if(aux<v) //en caso de que el valor retornado sea menor que v MAX value
+                        v=aux;//actualizamos el valor de v (te manda el valor mas pequeño porque MINIMIZA)
+                    Board[i][j]=-1;//marcamos como vacia la posicion(regresa Board posicion original)
+                }
+        return v;//regresamos el mejor valor
     }
 }

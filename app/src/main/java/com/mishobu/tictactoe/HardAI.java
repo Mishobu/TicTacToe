@@ -30,10 +30,6 @@ public class HardAI extends Activity {
         GameSpace[2][0] = (Button) findViewById(R.id.BL);
         GameSpace[2][1] = (Button) findViewById(R.id.BC);
         GameSpace[2][2] = (Button) findViewById(R.id.BR);
-        AIPlays();
-        Winner = WhoWins();
-        ShowResult();
-
 
         for (int i=0;i<3;i++)
             for(int j=0;j<3;j++)
@@ -42,6 +38,7 @@ public class HardAI extends Activity {
                 GameSpace[i][j].setOnClickListener(clickListener);
                 Board[i][j]=-1;
             }
+        AIPlays();
     }
 
     public void RestartGame(View v) {
@@ -54,6 +51,7 @@ public class HardAI extends Activity {
                 GameSpace[i][j].setText("");//borramos el contenido de las GameSpace
                 Board[i][j]=-1;//inicializando todas las posiciones del Board a menos uno
             }
+        AIPlays();
         Winner = WhoWins();
         ShowResult();
     }
@@ -174,9 +172,9 @@ public class HardAI extends Activity {
     {
         TextView Resultado = (TextView) findViewById(R.id.Resultado);
         if (Winner==0)
-            Resultado.setText("O Wins");
+            Resultado.setText("Player Wins");
         else if (Winner==1)
-            Resultado.setText("X Wins");
+            Resultado.setText("AI Wins");
         else if (Winner==-1 && GameOver())
             Resultado.setText("Draw");
         else if (Winner==-1)
