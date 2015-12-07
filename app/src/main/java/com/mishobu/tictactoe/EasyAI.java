@@ -6,11 +6,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.Random;
+
 public class EasyAI extends Activity {
     //Panel gato_panel,panel_principal;//declarando los paneles del gato y el principal donde sera colocado dicho panel
     Button NewGameButton;//declarando el boton juego nuevo
     Button GameSpace[][];//declarando un arreglo de botones
     int Board[][] = new int[3][3];//Board que almacenara en que posiciones estan las x y las 0
+    int First[] = new int[3];
+    int Second[] = new int[3];
+    Random A = new Random();
+    Random B = new Random();
     boolean EnabledButtons = false;//declarando botonees habilitados como falso
     String turn = "X";// turno
     int Winner;// Winner es -1 cuando no ha ganado nadei, 0 yo gano y 1 gana la maquina
@@ -212,26 +218,46 @@ public class EasyAI extends Activity {
     {
         if(!GameOver())//mientras no acabe la partida aplicas el algoritmo
         {
-            int f=0,c=0;
+            int a=0,b=0,f=0,c=0;
             int v=Integer.MIN_VALUE;
             int aux;
+            boolean Empty = true;
 
             for(int i=0;i<3;i++)
-                for(int j=0;j<3;j++)
-                    if(Board[i][j]==-1)//si el Board esta vacio
+                for(int j=0;j<3;j++) {
+                    if (Board[i][j] == -1)//si el Board esta vacio
                     {
-                        Board[i][j]=1;//tiramos
-                        aux=min();//buscamos minimizar
-                        if(aux>v)//en caso de tener un mejor valor
+                        Board[i][j] = 1;//tiramos
+                        aux = min();//buscamos minimizar
+                        if (aux > v)//en caso de tener un mejor valor
                         {
-                            v=aux;//actualizamos el valor de v por si encuentra un mejor nodo
-                            f=i;//guardamos las posiciones
-                            c=j;//guardamos las posiciones
+                            v = aux;//actualizamos el valor de v por si encuentra un mejor nodo
+                            f = i;//guardamos las posiciones
+                            c = j;//guardamos las posiciones
+                            for (a = 0; a < 3; a++)
+                                for (b = 0; b < 3; b++) {
+                                    First[a] = i;
+                                    Second[b] = j;
+                                }
                         }
-                        Board[i][j]=-1;//restableces el tiro
+                        Board[i][j] = -1;//restableces el tiro
+                    } else if (Board[i][j] == 1 || Board[i][j] == 0) {
+                        Empty = false;
                     }
-            Board[f][c]=1;  //la mejor posicion es la que tira (inidces f,c (son los que guarda i y j))
-            GameSpace[f][c].setClickable(false);
+                }
+            int randomA = A.nextInt(First.length);
+            int randomB = B.nextInt(Second.length);
+            //First[randomA] = 1;
+            //Second[randomB] = 1;
+            if(Empty){
+                Board[randomA][randomB]=1;  //la mejor posicion es la que tira (inidces f,c (son los que guarda i y j))
+                GameSpace[randomA][randomB].setClickable(false);
+            }else if(!Empty){
+                Board[f][c]=1;
+                GameSpace[f][c].setClickable(false);
+            }
+
+
         }
         UpdateBoard();
     }
