@@ -235,34 +235,6 @@ public class Hard extends Activity {
         UpdateBoard();
     }
 
-
-    /**IMPLEMENTANDO EL ALGORITMO MINMAX*/
-
-    /**ALGOTIRMO MIN MAX:
-
-     Play_O(board)
-     If end_game(board) then return eval(boar d)
-     For each empty slot in board
-     New_board = board
-     Mark empty cell with O in new_board
-     value = Play_X(new_board)
-     If value < min  then value = min
-     Return value
-     End
-
-
-     If end_game(board) then return eval(board)
-     For each empty slot in board
-     New_board = board
-     Mark empty cell with X in new_board
-     value = Play_O(new_board)
-     If value > max  then value = max
-     Return value
-     end
-
-     */
-
-
     public int max()
     {
         if(GameOver())//en caso de haber acabado

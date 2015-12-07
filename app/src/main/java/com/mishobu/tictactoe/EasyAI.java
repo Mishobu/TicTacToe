@@ -17,6 +17,7 @@ public class EasyAI extends Activity {
     int Second[] = new int[3];
     Random A = new Random();
     Random B = new Random();
+    int Shots=0;
     boolean EnabledButtons = false;//declarando botonees habilitados como falso
     String turn = "X";// turno
     int Winner;// Winner es -1 cuando no ha ganado nadei, 0 yo gano y 1 gana la maquina
@@ -50,6 +51,7 @@ public class EasyAI extends Activity {
     public void RestartGame(View v) {
         EnabledButtons=true;
         turn = "X";
+        Shots = 0;
         for (int i=0;i<3;i++)
             for(int j=0;j<3;j++)
             {
@@ -73,6 +75,7 @@ public class EasyAI extends Activity {
                         AIPlays();
                         Winner = WhoWins();
                         ShowResult();
+                        Shots=Shots+1;
                     }
                     break;
                 case R.id.TC:
@@ -82,6 +85,7 @@ public class EasyAI extends Activity {
                         AIPlays();
                         Winner = WhoWins();
                         ShowResult();
+                        Shots=Shots+1;
                     }
                     break;
                 case R.id.TR:
@@ -91,6 +95,7 @@ public class EasyAI extends Activity {
                         AIPlays();
                         Winner = WhoWins();
                         ShowResult();
+                        Shots=Shots+1;
                     }
                     break;
                 case R.id.ML:
@@ -100,6 +105,7 @@ public class EasyAI extends Activity {
                         AIPlays();
                         Winner = WhoWins();
                         ShowResult();
+                        Shots=Shots+1;
                     }
                     break;
                 case R.id.MC:
@@ -109,6 +115,7 @@ public class EasyAI extends Activity {
                         AIPlays();
                         Winner = WhoWins();
                         ShowResult();
+                        Shots=Shots+1;
                     }
                     break;
                 case R.id.MR:
@@ -118,6 +125,7 @@ public class EasyAI extends Activity {
                         AIPlays();
                         Winner = WhoWins();
                         ShowResult();
+                        Shots=Shots+1;
                     }
                     break;
                 case R.id.BL:
@@ -127,6 +135,7 @@ public class EasyAI extends Activity {
                         AIPlays();
                         Winner = WhoWins();
                         ShowResult();
+                        Shots=Shots+1;
                     }
                     break;
                 case R.id.BC:
@@ -136,6 +145,7 @@ public class EasyAI extends Activity {
                         AIPlays();
                         Winner = WhoWins();
                         ShowResult();
+                        Shots=Shots+1;
                     }
                     break;
                 case R.id.BR:
@@ -145,6 +155,7 @@ public class EasyAI extends Activity {
                         AIPlays();
                         Winner = WhoWins();
                         ShowResult();
+                        Shots=Shots+1;
                     }
                     break;
             }
@@ -218,77 +229,61 @@ public class EasyAI extends Activity {
     {
         if(!GameOver())//mientras no acabe la partida aplicas el algoritmo
         {
+            int randomA = A.nextInt(First.length);
+            int randomB = B.nextInt(Second.length);
             int a=0,b=0,f=0,c=0;
             int v=Integer.MIN_VALUE;
             int aux;
             boolean Empty = true;
-
-            for(int i=0;i<3;i++)
-                for(int j=0;j<3;j++) {
-                    if (Board[i][j] == -1)//si el Board esta vacio
-                    {
-                        Board[i][j] = 1;//tiramos
-                        aux = min();//buscamos minimizar
-                        if (aux > v)//en caso de tener un mejor valor
+            if(Shots<=3) {
+                for (int i = 0; i < 3; i++)
+                    for (int j = 0; j < 3; j++) {
+                        if (Board[i][j] == -1)//si el Board esta vacio
                         {
-                            v = aux;//actualizamos el valor de v por si encuentra un mejor nodo
-                            f = i;//guardamos las posiciones
-                            c = j;//guardamos las posiciones
-                            for (a = 0; a < 3; a++)
-                                for (b = 0; b < 3; b++) {
-                                    First[a] = i;
-                                    Second[b] = j;
-                                }
+                            Board[i][j] = 1;//tiramos
+                            aux = min();//buscamos minimizar
+                            if (aux > v)//en caso de tener un mejor valor
+                            {
+                                v = aux;//actualizamos el valor de v por si encuentra un mejor nodo
+                                f = i;//guardamos las posiciones
+                                c = j;//guardamos las posiciones
+                                for (a = 0; a < 3; a++)
+                                    for (b = 0; b < 3; b++) {
+                                        First[a] = i;
+                                        Second[b] = j;
+                                    }
+                            }
+                            Board[i][j] = -1;//restableces el tiro
+                        } else if (Board[i][j] == 1 || Board[i][j] == 0) {
+                            Empty = false;
                         }
-                        Board[i][j] = -1;//restableces el tiro
-                    } else if (Board[i][j] == 1 || Board[i][j] == 0) {
-                        Empty = false;
                     }
+                if(Empty){
+                    Board[randomA][randomB]=1;  //la mejor posicion es la que tira (inidces f,c (son los que guarda i y j))
+                    GameSpace[randomA][randomB].setClickable(false);
+                    Shots=Shots+1;
+                }else if(!Empty){
+                    Board[f][c]=1;
+                    GameSpace[f][c].setClickable(false);
+                    Shots=Shots+1;
                 }
-            int randomA = A.nextInt(First.length);
-            int randomB = B.nextInt(Second.length);
-            //First[randomA] = 1;
-            //Second[randomB] = 1;
-            if(Empty){
-                Board[randomA][randomB]=1;  //la mejor posicion es la que tira (inidces f,c (son los que guarda i y j))
-                GameSpace[randomA][randomB].setClickable(false);
-            }else if(!Empty){
-                Board[f][c]=1;
-                GameSpace[f][c].setClickable(false);
+            }else{
+                boolean RandomShot = false;
+                int x,y;
+                do{
+                    x = (int)(Math.random()*3);
+                    y = (int)(Math.random()*3);
+                    if(Board[x][y]==-1)
+                    {
+                        Board[x][y]=1;
+                        RandomShot=true;
+                        GameSpace[x][y].setClickable(false);
+                    }
+                }while(!RandomShot);
             }
-
-
         }
         UpdateBoard();
     }
-
-
-    /**IMPLEMENTANDO EL ALGORITMO MINMAX*/
-
-    /**ALGOTIRMO MIN MAX:
-
-     Play_O(board)
-     If end_game(board) then return eval(boar d)
-     For each empty slot in board
-     New_board = board
-     Mark empty cell with O in new_board
-     value = Play_X(new_board)
-     If value < min  then value = min
-     Return value
-     End
-
-
-     If end_game(board) then return eval(board)
-     For each empty slot in board
-     New_board = board
-     Mark empty cell with X in new_board
-     value = Play_O(new_board)
-     If value > max  then value = max
-     Return value
-     end
-
-     */
-
 
     public int max()
     {
