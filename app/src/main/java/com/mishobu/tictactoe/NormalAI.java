@@ -160,7 +160,6 @@ public class NormalAI extends Activity {
                     }
                     break;
             }
-            /**REVISANDO SI LAS GameSpace DEL JUEGO SON PRESIONADAS*/
         }
     };
 

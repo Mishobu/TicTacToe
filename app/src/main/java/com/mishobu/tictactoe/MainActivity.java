@@ -214,11 +214,10 @@ public class MainActivity extends Activity
                     }
                     break;
             }
-            /**REVISANDO SI LAS GameSpace DEL JUEGO SON PRESIONADAS*/
         }
     };
 
-    public int WhoWins()//METODO QUE REGRESA -1 SI GANA LA O 0 Y SI GANA LA X 1
+    public int WhoWins()
     {
         if (Board[0][0]!=-1 && Board[0][0]==Board[1][1] && Board[0][0]==Board[2][2])
             return Board[0][0];
