@@ -22,4 +22,9 @@ public class MainInicio extends Activity {
         Intent intent = new Intent(MainInicio.this, MainActivity.class);
         startActivity(intent);
     }
+
+    public void startRelax(View view) {
+        Intent intent = new Intent(MainInicio.this, Relax.class);
+        startActivity(intent);
+    }
 }

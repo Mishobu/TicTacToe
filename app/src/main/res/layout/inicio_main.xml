@@ -62,6 +62,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="36dp"
-        style="@style/MyButton.Black"/>
+        style="@style/MyButton.Black"
+        android:onClick="startRelax"/>
 
 </RelativeLayout>
